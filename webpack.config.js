@@ -7,7 +7,7 @@ module.exports = {
         main: './src/main.js',
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'public/dist'),
         filename: '[name].js',
         publicPath: "/",
     },
@@ -20,7 +20,8 @@ module.exports = {
           $: "jquery",
           jQuery: "jquery",
           Popper: ['popper.js', 'default']
-      })
+      }),
+        new webpack.HotModuleReplacementPlugin(),
     ],
     module: {
         rules: [{
@@ -47,6 +48,12 @@ module.exports = {
                 }
             ]
         }]
+    },
+    devServer: {
+        contentBase: __dirname + '/public/',
+        inline: true,
+        hot: true,
+        host: '0.0.0.0',
+        port: 3000
     }
-
 };
